@@ -11,5 +11,8 @@ namespace Assets.Scripts
 		int GetHP();
 		void SubtractHP(int count);
 		bool IsAlive();
+		HeroClass GetClass();
+		Item GetWeapone();
+		float GetArmor();
 	}
 }

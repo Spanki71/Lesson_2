@@ -6,6 +6,7 @@ namespace Assets.Scripts
 {
 	public class Troll : Unit
 	{
+		public Inventory _inventory = new Inventory();
 		bool _isAlive = true;
 		public string GetName()
 		{
@@ -40,6 +41,32 @@ namespace Assets.Scripts
 		int HP = 140;
 		int MinDamage = 8;
 		int MaxDamage = 12;
-
+		HeroClass Class;
+		public HeroClass GetClass()
+		{
+			return Class;
+		}
+		public Item GetWeapone()
+		{
+			foreach (var _item in _inventory._items)
+			{
+				if (_item.Name == "Weapone")
+				{
+					return _item;
+				}
+			}
+			return null;
+		}
+		public float GetArmor()
+		{
+			foreach (var _item in _inventory._items)
+			{
+				if (_item.Name == "Armor")
+				{
+					return _item.efficiency;
+				}
+			}
+			return 0.0f;
+		}
 	}
 }
