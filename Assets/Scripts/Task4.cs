@@ -81,6 +81,7 @@ namespace Assets.Scripts
 							if (Weapone.efficiency > Hero.GetWeapone().efficiency)
 							{
 								Hero.SetWeapone(Weapone);
+								Debug.LogWarning("Герой меняет оружие");
 
                             }
 						}
