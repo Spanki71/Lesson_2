@@ -68,5 +68,15 @@ namespace Assets.Scripts
 			}
 			return 0.0f;
 		}
-	}
+        public void SetWeapone(Item Weapone)
+        {
+            foreach (var _item in _inventory._items)
+            {
+                if (_item.Name == "Weapone")
+                {
+                    _item.efficiency = Weapone.efficiency;
+                }
+            }
+        }
+    }
 }

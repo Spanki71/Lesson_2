@@ -2,6 +2,7 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting;
 
 namespace Assets.Scripts
 {
@@ -9,6 +10,7 @@ namespace Assets.Scripts
     {
         [SerializeField] int CountHeros;
 		[SerializeField] int CountEnemys;
+		[SerializeField] public int Rounds;
         Team HeroTeam = new Team();
         Team EnemyTeam = new Team();
 		private void Awake()
@@ -25,7 +27,7 @@ namespace Assets.Scripts
 		}
 		void Start()
         {
-            TeamArena ta = new TeamArena(HeroTeam, EnemyTeam);
+            TeamArena ta = new TeamArena(HeroTeam, EnemyTeam, Rounds);
         }
 
         // Update is called once per frame
@@ -38,50 +40,63 @@ namespace Assets.Scripts
     public class TeamArena
     {
 		[SerializeField] public float krit = 3.0f;
-		public TeamArena(Team HeroTeam, Team EnemyTeam)
+		public TeamArena(Team HeroTeam, Team EnemyTeam, int Rounds)
         {
             int _tempIndex = 0;
             Unit _tempUnit = EnemyTeam._units[_tempIndex];
-			// 1 удар - Hero
-            foreach (var Hero in HeroTeam._units) // Бьет каждый герой за раунд
-            {
-				float damage = CalculateDamage(Hero.GetDamage(), _tempUnit.GetArmor(), Hero.GetWeapone().element, _tempUnit.GetWeapone().element, krit);
-				_tempUnit.SubtractHP((int)damage);
-				Debug.Log(Hero.GetName() + " наносит: " + damage + " по " + _tempUnit.GetName());
-                if (!_tempUnit.IsAlive())
-                {
-                    if (_tempIndex < EnemyTeam._units.Count) // Еще остались враги
-                    {
-						_tempIndex++;
-                    }
-                    else 
-                    {
-                        Debug.Log("Герои победили");// победа
-                        return;
-                    }
-                }
-            }
-            _tempIndex = 0;
-			_tempUnit = HeroTeam._units[_tempIndex];
-			// 2 удар - Enemy
-			foreach (var Enemy in EnemyTeam._units) // Бьет каждый герой за раунд
+			for (int i = 0; i < Rounds; i++)
 			{
-				float damage = CalculateDamage(Enemy.GetDamage(), _tempUnit.GetArmor(), Enemy.GetWeapone().element, _tempUnit.GetWeapone().element, krit);
-				_tempUnit.SubtractHP((int)damage);
-				Debug.Log(Enemy.GetName() + " наносит: " + damage + " по " + _tempUnit.GetName());
-				if (!_tempUnit.IsAlive())
+				// 1 удар - Hero
+				foreach (var Hero in HeroTeam._units) // Бьет каждый герой за раунд
 				{
-					if (_tempIndex < HeroTeam._units.Count) // Еще остались враги
+					float damage = CalculateDamage(Hero.GetDamage(), _tempUnit.GetArmor(), Hero.GetWeapone().element, _tempUnit.GetWeapone().element, krit);
+					_tempUnit.SubtractHP((int)damage);
+					Debug.Log(Hero.GetName() + " наносит: " + damage + " по " + _tempUnit.GetName());
+					if (!_tempUnit.IsAlive())
 					{
-						_tempIndex++;
+						if (_tempIndex < EnemyTeam._units.Count) // Еще остались враги
+						{
+							_tempIndex++;
+						}
+						else
+						{
+							Debug.Log("Герои победили");// победа
+							return;
+						}
 					}
-					else
+				}
+				_tempIndex = 0;
+				_tempUnit = HeroTeam._units[_tempIndex];
+				// 2 удар - Enemy
+				foreach (var Enemy in EnemyTeam._units) // Бьет каждый герой за раунд
+				{
+					float damage = CalculateDamage(Enemy.GetDamage(), _tempUnit.GetArmor(), Enemy.GetWeapone().element, _tempUnit.GetWeapone().element, krit);
+					_tempUnit.SubtractHP((int)damage);
+					Debug.Log(Enemy.GetName() + " наносит: " + damage + " по " + _tempUnit.GetName());
+					if (!_tempUnit.IsAlive())
 					{
-						Debug.Log("Противники победили, а вы проиграли");// победа
-						return;
+						Item Weapone = _tempUnit.GetWeapone();
+						foreach (var Hero in HeroTeam._units)
+						{
+							if (Weapone.efficiency > Hero.GetWeapone().efficiency)
+							{
+								Hero.SetWeapone(Weapone);
+
+                            }
+						}
+						if (_tempIndex < HeroTeam._units.Count) // Еще остались враги
+						{
+							_tempIndex++;
+						}
+						else
+						{
+							Debug.Log("Противники победили, а вы проиграли");// победа
+							return;
+						}
 					}
 				}
 			}
+			Debug.Log("Ничья");
 		}
 
 		float CalculateDamage(float _damage, float _armor, Element _selfElement, Element _enemyElement, float _krit)

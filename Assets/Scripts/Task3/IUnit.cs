@@ -14,5 +14,6 @@ namespace Assets.Scripts
 		HeroClass GetClass();
 		Item GetWeapone();
 		float GetArmor();
+		void SetWeapone(Item Weapone);
 	}
 }
