@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -40,7 +38,6 @@ namespace Assets.Scripts
 				_count++;
 				return;
 			}
-			// Мест нет
 		}
 		public void AddItem(String Name, int Count, int efficiency)
 		{
@@ -57,13 +54,13 @@ namespace Assets.Scripts
 					return;
 				}
 			}
+			
 			if (_count < 10)
 			{
 				_items.Add(new Item(Name, Count, efficiency));
 				_count++;
 				return;
 			}
-			// Мест нет
 		}
 		public void AddItem(String Name, int Count, int efficiency, Element element)
 		{
@@ -71,7 +68,7 @@ namespace Assets.Scripts
 			{
 				return;
 			}
-
+			
 			for (int i = 0; i < _items.Count; i++)
 			{
 				if (_items[i].Name == Name)
@@ -108,11 +105,9 @@ namespace Assets.Scripts
 					}
 					else 
 					{
-						// Удаляется больше чем есть
 					}
 				}
 			}
-			// Предмет не найден
 		}
 	}
 	public class Item

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Assets.Scripts
 {
-	public class Troll : Unit
+	public class Troll : IUnit
 	{
 		public Inventory _inventory = new Inventory();
 		bool _isAlive = true;

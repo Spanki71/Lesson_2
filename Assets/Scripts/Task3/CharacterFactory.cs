@@ -6,7 +6,6 @@ namespace Assets.Scripts
 {
 	public class CharacterFactory
 	{
-		
 		public Element RandomElement()
 		{
 			Random r = new Random();
@@ -25,7 +24,10 @@ namespace Assets.Scripts
 			}
 			return Element.None;
 		}
-		public Unit CreateHero(HeroClass Class)
+		
+		
+		
+		public IUnit CreateHero(HeroClass Class)
 		{
 			switch (Class)
 			{
@@ -41,10 +43,11 @@ namespace Assets.Scripts
 					Mage._inventory.AddItem("Weapone", 1, r.Next(5, 25), RandomElement());
 					Mage._inventory.AddItem("Armor", 1, r.Next(2, 15));
 					return Mage;
+				default:
+					return new Warrior();
 			}
-			return new Warrior();
 		}
-		public Unit CreateRandomHero()
+		public IUnit CreateRandomHero()
 		{
 			Random r = new Random();
 			switch (r.Next(0, 2))
@@ -64,7 +67,7 @@ namespace Assets.Scripts
 			}
 			return null;
 		}
-		public Unit CreateEnemy()
+		public IUnit CreateEnemy()
 		{
 			Random r = new Random();
 			switch (r.Next(0, 3))
