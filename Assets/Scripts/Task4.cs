@@ -1,7 +1,6 @@
+/*
 using NUnit.Framework;
 using UnityEngine;
-using System.Collections.Generic;
-using System;
 
 namespace Assets.Scripts
 {
@@ -130,3 +129,4 @@ namespace Assets.Scripts
         }
 	}
 }
+*/

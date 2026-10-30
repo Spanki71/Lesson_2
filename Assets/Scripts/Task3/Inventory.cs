@@ -1,148 +1,81 @@
-﻿using System;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
-
 namespace Assets.Scripts
 {
 	public class Inventory
 	{
-		public List<Item> _items = new List<Item>(10);
-		int _count = 0;
-		public string Print()
+		public List<Item> items = new List<Item>(10);
+		int count = 0;
+
+		public void Print()
 		{
-			string st = "";
-			for (int i = 0; i < _items.Count; i++)
+			string st = "Состояние инвентаря: \n";
+			
+			for (int i = 0; i < count; i++)
 			{
-				st += _items[i].Name + " x" + _items[i].Count + "\n";
+				st += items[i].name + " x" + items[i].count + "\n";
 			}
-			return st;
+
+			st += "Занято " + count + " из 10";
+			Debug.Log(st);
 		}
-		public void AddItem(String Name, int Count)
+
+		public void AddItem(Item item)
 		{
-			if (Count < 1)
+			int count = item.count;
+			string name = item.name;
+			if (item == null)
 			{
+				Debug.Log("Невозможно добавить в инвентарь");
 				return;
 			}
 
-			for (int i = 0; i < _items.Count; i++)
+			for (int i = 0; i < items.Count; i++)
 			{
-				if (_items[i].Name == Name)
+				if (items[i].name == name)
 				{
-					_items[i].Count += Count;
+					items[i].count += count;
+					Debug.Log("Добавлено:" + items[i].name + " x" + count);
 					return;
 				}
 			}
-			if (_count < 10)
+
+			if (count < 10)
 			{
-				_items.Add(new Item(Name, Count));
-				_count++;
-				return;
-			}
-			// Мест нет
-		}
-		public void AddItem(String Name, int Count, int efficiency)
-		{
-			if (Count < 1)
-			{
+				items.Add(new Item(name, count));
+				Debug.Log("Добавлен новый предмет:" + name + " x" + count);
+				count++;
 				return;
 			}
 
-			for (int i = 0; i < _items.Count; i++)
-			{
-				if (_items[i].Name == Name)
-				{
-					_items[i].Count += Count;
-					return;
-				}
-			}
-			if (_count < 10)
-			{
-				_items.Add(new Item(Name, Count, efficiency));
-				_count++;
-				return;
-			}
-			// Мест нет
+			Debug.Log("Нет свободного места в инвенторе");
 		}
-		public void AddItem(String Name, int Count, int efficiency, Element element)
+		
+		public void RemoveItem(Item item, int countToRemove)
 		{
-			if (Count < 1)
+			for (int i = 0; i < count; i++)
 			{
-				return;
-			}
-
-			for (int i = 0; i < _items.Count; i++)
-			{
-				if (_items[i].Name == Name)
+				if (items[i].name == item.name)
 				{
-					_items[i].Count += Count;
-					return;
-				}
-			}
-			if (_count < 10)
-			{
-				_items.Add(new Item(Name, Count, efficiency, element));
-				_count++;
-				return;
-			}
-			// Мест нет
-		}
-		public void RemoveItem(String Name, int CountToRemove)
-		{
-			int _countToRemove = CountToRemove;
-			for (int i = 0; i < _count; i++)
-			{
-				if (_items[i].Name == Name)
-				{
-					if (_items[i].Count > _countToRemove)
+					if (items[i].count > countToRemove)
 					{
-						_items[i].Count -= _countToRemove;
+						items[i].count -= countToRemove;
 						return;
 					}
-					else if (_items[i].Count == _countToRemove)
+					else if (items[i].count == countToRemove)
 					{
-						_items.Remove(_items[i]);
-						_count--;
+						items.Remove(items[i]);
+						count--;
 						return;
 					}
-					else 
+					else
 					{
-						// Удаляется больше чем есть
+						Debug.Log("Нельзя солько удалить");
 					}
 				}
 			}
-			// Предмет не найден
+			
+			Debug.LogWarning("Нет такого предмета в инвентаре");
 		}
-	}
-	public class Item
-	{
-		public Item(String Name, int Count)
-		{
-			this.Name = Name;
-			this.Count = Count;
-		}
-		public Item(String Name, int Count, int efficiency)
-		{
-			this.efficiency = efficiency;
-			this.Name = Name;
-			this.Count = Count;
-		}
-		public Item(String Name, int Count, int efficiency, Element _element)
-		{
-			this.efficiency = efficiency;
-			this.Name = Name;
-			this.Count = Count;
-			element = _element;
-		}
-		public Item()
-		{
-			Name = null;
-			Count = 0;
-		}
-		public String Name;
-		public int Count;
-		public float efficiency;
-		public Element element;
 	}
 }

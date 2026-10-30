@@ -285,12 +285,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c631bf585f1ceb0479f937af207bdf19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Task1
-  Damage: 10
-  Armor: 3
-  WeaponElement: 2
-  EnemyElement: 3
-  Krit: 0.3
-  CoutnAttack: 3
+  damage: 10
+  armor: 5
+  weaponElement: 0
+  enemyElement: 2
+  krit: 0.3
+  coutnAttack: 4
 --- !u!4 &331524706
 Transform:
   m_ObjectHideFlags: 0
