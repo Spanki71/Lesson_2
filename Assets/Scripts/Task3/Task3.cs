@@ -1,14 +1,11 @@
 using UnityEngine;
-using System;
-using NUnit.Framework.Constraints;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace Assets.Scripts
 {
 	public class Task3 : MonoBehaviour
 	{
-		private Unit Hero;
-		private Unit Enemy;
+		private IUnit Hero;
+		private IUnit Enemy;
 		[SerializeField] public HeroClass Class;
 		[SerializeField] int rounds;
 		private void Awake()
@@ -23,9 +20,9 @@ namespace Assets.Scripts
 		}
 
 	}
-	public class Arena // Нужен Debug.Log();  
+	public class Arena
 	{
-		public Arena(Unit Hero, Unit Enemy, int rounds)
+		public Arena(IUnit Hero, IUnit Enemy, int rounds)
 		{
 			System.Random random = new System.Random();
 			int HeroDamage;

@@ -25,7 +25,6 @@ namespace Assets.Scripts
 			for (int i = 0; i < CoutnAttack; i++)
 			{
 				Debug.Log(i + 1 + " удар: " + CalculateDamage(Damage, Armor, WeaponElement, EnemyElement, Krit));
-
 			}
 		}
 

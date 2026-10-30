@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Assets.Scripts
 {
-	public interface Unit
+	public interface IUnit
 	{
 		int GetDamage();
 		string GetName();

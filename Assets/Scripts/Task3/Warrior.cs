@@ -4,8 +4,14 @@ using System.Text;
 
 namespace Assets.Scripts
 {
-	public class Warrior : Unit
+	public class Warrior : IUnit
 	{
+		string Name = "Hero";
+		int HP = 100;
+		int MinDamage = 10;
+		int MaxDamage = 16;
+		HeroClass Class;
+		
 		public Inventory _inventory = new Inventory();
 		bool _isAlive = true;
 		public string GetName()
@@ -37,15 +43,12 @@ namespace Assets.Scripts
 		{
 			return _isAlive;
 		}
-		string Name = "Hero";
-		int HP = 100;
-		int MinDamage = 10;
-		int MaxDamage = 16;
-		HeroClass Class;
+		
 		public HeroClass GetClass()
 		{
 			return Class;
 		}
+		
 		public Item GetWeapone()
 		{
 			foreach (var _item in _inventory._items)
@@ -57,6 +60,7 @@ namespace Assets.Scripts
 			}
 			return null;
 		}
+		
 		public float GetArmor()
 		{
 			foreach (var _item in _inventory._items)
@@ -68,6 +72,7 @@ namespace Assets.Scripts
 			}
 			return 0.0f;
 		}
+		
 		public void SetWeapone(Item Weapone)
 		{
             foreach (var _item in _inventory._items)

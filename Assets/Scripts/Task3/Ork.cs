@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Assets.Scripts
 {
-	public class Ork : Unit
+	public class Ork : IUnit
 	{
 		public Inventory _inventory = new Inventory();
 		bool _isAlive = true;

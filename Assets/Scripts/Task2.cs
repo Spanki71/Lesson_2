@@ -1,11 +1,12 @@
-using Assets.Scripts;
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Task2 : MonoBehaviour//inventory, переписал в MonoBehaviour, потому что мне нужен вывод(Debug.Log)
 {
+	List<Item> _items = new List<Item>(10);
+	int _count = 0;
+	
 	private void Start()
 	{
 		AddItem("Меч", 1);
@@ -30,8 +31,7 @@ public class Task2 : MonoBehaviour//inventory, переписал в MonoBehavio
 
 		Print();
 	}
-	List<Item> _items = new List<Item>(10);
-	int _count = 0;
+	
 	void Print()
 	{
 		string st = "Состояние инвентаря: \n";
@@ -42,7 +42,8 @@ public class Task2 : MonoBehaviour//inventory, переписал в MonoBehavio
 		st += "Занято " + _count + " из 10";
 		Debug.Log(st);// Думал, что что-то не выводит, а там надо раскрыть вывод
 	}
-	public void AddItem(String Name, int Count)
+
+	private void AddItem(String Name, int Count)
 	{
 		if (Count < 1)
 		{

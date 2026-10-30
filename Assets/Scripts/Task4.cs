@@ -1,8 +1,7 @@
-using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using System;
-using Unity.VisualScripting;
+using UnityEngine.Profiling;
 
 namespace Assets.Scripts
 {
@@ -29,12 +28,6 @@ namespace Assets.Scripts
         {
             TeamArena ta = new TeamArena(HeroTeam, EnemyTeam, Rounds);
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 
     public class TeamArena
@@ -43,7 +36,7 @@ namespace Assets.Scripts
 		public TeamArena(Team HeroTeam, Team EnemyTeam, int Rounds)
         {
             int _tempIndex = 0;
-            Unit _tempUnit = EnemyTeam._units[_tempIndex];
+            IUnit _tempUnit = EnemyTeam._units[_tempIndex];
 			for (int i = 0; i < Rounds; i++)
 			{
 				// 1 удар - Hero
@@ -131,12 +124,12 @@ namespace Assets.Scripts
 	public class Team
     {
         bool IsAlive = true;
-        public List<Unit> _units = new List<Unit>();
-        public void AddUnit(Unit _unit)
+        public List<IUnit> _units = new List<IUnit>();
+        public void AddUnit(IUnit _unit)
         {
             _units.Add(_unit);
         }
-        public void RemoveUnit(Unit _unit)
+        public void RemoveUnit(IUnit _unit)
         {
             _units.Remove(_unit);
             if (_units.Count < 1)
