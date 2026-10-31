@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts
 {
-	public interface IUnit : IGetInfo, IFight
+	public interface IUnit : IGetInfo, IFight, IUseInventory
 	{
 	}
 }

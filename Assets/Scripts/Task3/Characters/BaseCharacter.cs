@@ -5,27 +5,28 @@
         public Inventory inventory = new Inventory();
         public bool isAlive = true;
         public string name = "Hero";
-        public int hp = 100;
+        public float hp = 100.0f;
         public int minDamage = 10;
         public int maxDamage = 16;
+        public float krit = 0.3f;
 
         public string GetName()
         {
             return name;
         }
 
-        public int GetDamage()
+        public float GetDamage()
         {
             System.Random r = new System.Random();
             return r.Next(minDamage, maxDamage);
         }
 
-        public int GetHp()
+        public float GetHp()
         {
             return hp;
         }
 
-        public void SubtractHp(int countHp)
+        public void SubtractHp(float countHp)
         {
             if (countHp >= hp)
             {
@@ -43,13 +44,13 @@
             return isAlive;
         }
 
-        public Item GetWeapone()
+        public Weapone GetWeapone()
         {
             foreach (var item in inventory.items)
             {
-                if (item.name == "Weapone")
+                if (item is Weapone weapone)
                 {
-                    return item;
+                    return weapone;
                 }
             }
 
@@ -60,13 +61,23 @@
         {
             foreach (var item in inventory.items)
             {
-                if (item.name == "Armor")
+                if (item is Armor armor )
                 {
-                    return item.efficiency;
+                    return armor.hpArmor;
                 }
             }
 
             return 0.0f;
+        }
+
+        public float GetKrit()
+        {
+            return krit;
+        }
+
+        public void AddItem(Item item)
+        {
+            inventory.AddItem(item);
         }
     }
 }

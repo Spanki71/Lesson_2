@@ -8,27 +8,32 @@ namespace Assets.Scripts
 		private void Start()
 		{
 			Inventory inv = new Inventory();
-
-			Item item = new Item("Меч", 1);
+			
+			inv.RemoveItem("Амбассадор", 1);
+			
+			Item item = new Weapone("Меч", 1, 10, Element.None);
 			inv.AddItem(item);
-			item.name = "Щит";
-			inv.AddItem(item);
-			item.name = "Меч";
-			inv.AddItem(item);
-			inv.AddItem(item);
-			item.name = "Зелье";
-			inv.AddItem(item);
-			item.name = "Лук";
-			inv.AddItem(item);
-			item.name = "Стрелы";
-
+			Item item1 = new Armor("Щит", 1, 5, Element.None);
+			Debug.Log($"Тип предмета щита {item1.itemType}");
+			inv.AddItem(item1);
+			Item item2 = new Weapone("Меч", 1, 10, Element.None);
+			inv.AddItem(item2);
+			Item item3 = new Other("Зелье", 1);
+			inv.AddItem(item3);
+			Item item4 = new Weapone("Лук", 1, 10, Element.None);
+			inv.AddItem(item4);
+			Item item5 = new Other("Стрела", 1);
+			Item item6 = new Weapone("Лук", 1, 10, Element.None);
+			inv.AddItem(item6);
+			
+			inv.Print();
 
 			item.name = "Meч";
 
-			inv.RemoveItem(item, 1);
-			inv.RemoveItem(item, 10);
+			inv.RemoveItem("Меч", 1);
+			inv.RemoveItem("Меч", 10);
 			item.name = "Амбассадор";
-			inv.RemoveItem(item, 1);
+			inv.RemoveItem("Амбассадор", 1);
 
 			inv.Print();
 		}

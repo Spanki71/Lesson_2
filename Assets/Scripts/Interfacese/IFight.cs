@@ -2,8 +2,8 @@
 {
     public interface IFight
     {
-        public int GetDamage();
-        public float GetArmor();
-        public void SubtractHp(int countHp);
+        public float GetDamage();
+        public void SubtractHp(float countHp);
+        public float GetKrit();
     }
 }

@@ -290,7 +290,7 @@ MonoBehaviour:
   weaponElement: 0
   enemyElement: 2
   krit: 0.3
-  coutnAttack: 4
+  countAttack: 5
 --- !u!4 &331524706
 Transform:
   m_ObjectHideFlags: 0

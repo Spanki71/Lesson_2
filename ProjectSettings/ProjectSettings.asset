@@ -928,10 +928,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 88816f0c-aec1-41ea-9d2a-be0848358193
+  cloudProjectId: ab9afda9-91ca-4213-9fcf-1ba501a40eea
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Lesson2
+  projectName: Lesson_2
   organizationId: pokatan
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

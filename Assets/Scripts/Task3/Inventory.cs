@@ -13,16 +13,16 @@ namespace Assets.Scripts
 			
 			for (int i = 0; i < count; i++)
 			{
-				st += items[i].name + " x" + items[i].count + "\n";
+				st += $"{items[i].name} x {items[i].count}\n";
 			}
 
-			st += "Занято " + count + " из 10";
+			st += $"Занято {count} из 10";
 			Debug.Log(st);
 		}
 
 		public void AddItem(Item item)
 		{
-			int count = item.count;
+			int addCount = item.count;
 			string name = item.name;
 			if (item == null)
 			{
@@ -34,16 +34,16 @@ namespace Assets.Scripts
 			{
 				if (items[i].name == name)
 				{
-					items[i].count += count;
-					Debug.Log("Добавлено:" + items[i].name + " x" + count);
+					items[i].count += addCount;
+					Debug.Log($"Добавлено: {items[i].name} x {addCount}");
 					return;
 				}
 			}
 
 			if (count < 10)
 			{
-				items.Add(new Item(name, count));
-				Debug.Log("Добавлен новый предмет:" + name + " x" + count);
+				items.Add(item);
+				Debug.Log($"Добавлен новый предмет: {name} x {addCount}");
 				count++;
 				return;
 			}
@@ -51,31 +51,33 @@ namespace Assets.Scripts
 			Debug.Log("Нет свободного места в инвенторе");
 		}
 		
-		public void RemoveItem(Item item, int countToRemove)
+		public void RemoveItem(string item, int countToRemove)
 		{
 			for (int i = 0; i < count; i++)
 			{
-				if (items[i].name == item.name)
+				if (items[i].name == item)
 				{
 					if (items[i].count > countToRemove)
 					{
 						items[i].count -= countToRemove;
+						Debug.Log($"Удалено: {item} x {countToRemove}");
 						return;
 					}
 					else if (items[i].count == countToRemove)
 					{
 						items.Remove(items[i]);
 						count--;
+						Debug.Log($"Полностью удалено: {item} x {countToRemove}");
 						return;
 					}
 					else
 					{
-						Debug.Log("Нельзя солько удалить");
+						Debug.Log("Нельзя столько удалить");
 					}
 				}
 			}
 			
-			Debug.LogWarning("Нет такого предмета в инвентаре");
+			Debug.LogWarning($"{item} нет в инвентаре");
 		}
 	}
 }

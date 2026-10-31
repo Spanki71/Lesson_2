@@ -3,9 +3,9 @@
     public interface IGetInfo
     {
         public string GetName();
-        public int GetHp();
+        public float GetHp();
         public bool IsAlive();
-        //public Item GetWeapone();
-        //public Item Armor();
+        public Weapone GetWeapone();
+        public float GetArmor();
     }
 }
