@@ -4,7 +4,6 @@ namespace Assets.Scripts
 {
 	public class Mage : BaseCharacter, IUnit
 	{
-		HeroClass heroClass = HeroClass.Mage;
 		public Mage()
 		{
 			this.name = "Mage";

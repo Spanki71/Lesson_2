@@ -13,6 +13,6 @@ namespace Assets.Scripts
             this.name = name;
             this.count = count;
         }
-
+        
     }
 }

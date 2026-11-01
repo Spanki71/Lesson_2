@@ -48,12 +48,11 @@
         {
             foreach (var item in inventory.items)
             {
-                if (item is Weapone weapone)
+                if (item.itemType == ItemType.Weapone)
                 {
-                    return weapone;
+                    return (Weapone)item;
                 }
             }
-
             return null;
         }
 
