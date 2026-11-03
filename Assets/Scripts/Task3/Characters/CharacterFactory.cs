@@ -4,8 +4,6 @@ namespace Assets.Scripts
 {
 	public class CharacterFactory
 	{
-		
-		
 		public IUnit CreateHero(HeroClass heroClass)
 		{
 			switch (heroClass)
@@ -18,6 +16,7 @@ namespace Assets.Scripts
 					return new Warrior();
 			}
 		}
+
 		public IUnit CreateRandomHero()
 		{
 			Random r = new Random();
@@ -30,6 +29,7 @@ namespace Assets.Scripts
 			}
 			return null;
 		}
+
 		public IUnit CreateEnemy()
 		{
 			Random r = new Random();

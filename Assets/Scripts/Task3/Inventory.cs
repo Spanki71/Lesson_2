@@ -5,7 +5,7 @@ namespace Assets.Scripts
 	public class Inventory
 	{
 		public List<Item> items = new List<Item>(10);
-		int count = 0;
+		private int count = 0;
 
 		public void Print()
 		{
@@ -76,7 +76,6 @@ namespace Assets.Scripts
 					}
 				}
 			}
-			
 			Debug.LogWarning($"{item} нет в инвентаре");
 		}
 	}

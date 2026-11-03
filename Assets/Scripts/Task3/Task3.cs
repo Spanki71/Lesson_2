@@ -7,10 +7,13 @@ namespace Assets.Scripts
 {
 	public class Task3 : MonoBehaviour
 	{
+		[SerializeField]
+		private HeroClass s_heroClass;
+		[SerializeField]
+		private int s_rounds;
+		
 		private IUnit hero;
 		private IUnit enemy;
-		[SerializeField] private HeroClass s_heroClass;
-		[SerializeField] private int s_rounds;
 		private void Awake()
 		{
 			CharacterFactory cf = new CharacterFactory();

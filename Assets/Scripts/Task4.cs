@@ -4,11 +4,15 @@ namespace Assets.Scripts
 {
     public class Task4 : MonoBehaviour
     {
-        [SerializeField] private int countHeros;
-		[SerializeField] private int countEnemys;
-        [SerializeField] private int rounds;
         public Team heroTeam =  new Team();
         public Team enemyTeam  = new Team();
+        
+        [SerializeField]
+        private int countHeros;
+        [SerializeField]
+		private int countEnemys;
+        [SerializeField]
+        private int rounds;
         
 		private void Awake()
 		{
@@ -32,7 +36,6 @@ namespace Assets.Scripts
                     
                     enemyTeam.AddUnit(temp);
                 }
-                
         }
         
 		void Start()

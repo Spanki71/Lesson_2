@@ -4,20 +4,20 @@ namespace Assets.Scripts
 {
     public class Arena
     {
-        private string s_heroName;
-        private string s_enemyName;
-        private string s_st;
+        private string m_heroName;
+        private string m_enemyName;
+        private string m_st;
 
-        private float heroDamage;
-        private float enemyDamage;
+        private float m_heroDamage;
+        private float m_enemyDamage;
 
         public void Run(IUnit hero, IUnit enemy, int rounds)
         {
-            s_heroName = hero.GetName();
-            s_enemyName = enemy.GetName();
-            s_st = $"{s_heroName} ( {hero.GetHp()} HP) против ";
-            s_st += $"{s_enemyName} ({enemy.GetHp()} HP)";
-            Debug.Log(s_st);
+            m_heroName = hero.GetName();
+            m_enemyName = enemy.GetName();
+            m_st = $"{m_heroName} ( {hero.GetHp()} HP) против ";
+            m_st += $"{m_enemyName} ({enemy.GetHp()} HP)";
+            Debug.Log(m_st);
 
             Weapone hw = hero.GetWeapone();
             Weapone ew = enemy.GetWeapone();
@@ -30,17 +30,17 @@ namespace Assets.Scripts
 
             for (int i = 0; i < rounds; i++)
             {
-                heroDamage = CalculateTheDamage.CalculateDamage(hero.GetDamage() + hWDamage, eArmor, hElement, eElement,
+                m_heroDamage = CalculateTheDamage.CalculateDamage(hero.GetDamage() + hWDamage, eArmor, hElement, eElement,
                     hero.GetKrit());
-                enemy.SubtractHp(heroDamage);
-                s_st = $"Раунд {i}:{hero.GetName()} наносит {heroDamage} у противника {enemy.GetHp()};";
+                enemy.SubtractHp(m_heroDamage);
+                m_st = $"Раунд {i}:{hero.GetName()} наносит {m_heroDamage} у противника {enemy.GetHp()};";
 
                 if (enemy.IsAlive())
                 {
-                    enemyDamage = CalculateTheDamage.CalculateDamage(enemy.GetDamage() + eWDamage, hArmor, eElement,
+                    m_enemyDamage = CalculateTheDamage.CalculateDamage(enemy.GetDamage() + eWDamage, hArmor, eElement,
                         hElement, enemy.GetKrit());
-                    hero.SubtractHp(enemyDamage);
-                    s_st += $"{enemy.GetName()} наносит {enemyDamage} у героя {hero.GetHp()}";
+                    hero.SubtractHp(m_enemyDamage);
+                    m_st += $"{enemy.GetName()} наносит {m_enemyDamage} у героя {hero.GetHp()}";
                     if (!hero.IsAlive())
                     {
                         Debug.Log("Поражение");
@@ -53,7 +53,7 @@ namespace Assets.Scripts
                     return;
                 }
 
-                Debug.Log(s_st);
+                Debug.Log(m_st);
             }
 
             Debug.Log($"Ничья у героя осталось {hero.GetHp()} HP, у {enemy.GetName()} осталось {enemy.GetHp()} HP");

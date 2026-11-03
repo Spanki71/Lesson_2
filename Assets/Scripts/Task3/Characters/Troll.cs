@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Assets.Scripts
+﻿namespace Assets.Scripts
 {
 	public class Troll : BaseCharacter,   IUnit
 	{

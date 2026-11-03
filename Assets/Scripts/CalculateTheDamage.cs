@@ -3,7 +3,11 @@ namespace Assets.Scripts
 {
     public static class CalculateTheDamage
     {
-        public static string CalculateDamageString(float damage, float armor, Element selfElement, Element enemyElement, float krit)
+        public static string CalculateDamageString(float damage,
+            float armor,
+            Element selfElement,
+            Element enemyElement,
+            float krit)
         {
             float baseDamage;
             
@@ -47,7 +51,11 @@ namespace Assets.Scripts
             return $"{baseDamage} урона {st}";
         }
         
-        public static float CalculateDamage(float damage, float armor, Element selfElement, Element enemyElement, float krit)
+        public static float CalculateDamage(float damage,
+            float armor,
+            Element selfElement,
+            Element enemyElement,
+            float krit)
         {
             float baseDamage;
             
