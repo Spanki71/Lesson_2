@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -9,27 +8,45 @@ namespace Assets.Scripts
 
         public void Run(Team heroTeam, Team enemyTeam, int rounds)
         {
-            int tempIndex = 0;
-            IUnit tempUnit = enemyTeam.units[tempIndex];
-            Weapone hw;
-            Weapone ew = tempUnit.GetWeapone();
+            string debugInfo;
+            
+            if (heroTeam.units.Count == 0 || enemyTeam.units.Count == 0)
+            {
+                Debug.Log("Введите корректное колличество участников команд");
+                return;
+            }
+
             for (int i = 0; i < rounds; i++)
             {
-
+                IUnit tempUnit = enemyTeam.units[0];
+                Weapone hWeapone; 
+                float hArmor; 
+                Weapone eWeapone = tempUnit.GetWeapone(); 
+                float eArmor = tempUnit.GetArmor();
+                Debug.LogWarning($"раунд {i}");
                 foreach (var hero in heroTeam.units)
                 {
-                    hw = hero.GetWeapone();
-                    float damage =
-                        CalculateTheDamage.CalculateDamage(hw.damage, tempUnit.GetArmor(), hw.element, ew.element,
-                            krit);
+                    hWeapone = hero.GetWeapone();
+                    float damage = hero.GetDamage() + CalculateTheDamage.CalculateDamage(hWeapone.damage,
+                            eArmor,
+                            hWeapone.element,
+                            eWeapone.element,
+                            krit,
+                            out debugInfo);
+                    
                     tempUnit.SubtractHp(damage);
                     Debug.Log($"{hero.GetName()} наносит: {damage} по {tempUnit.GetName()}");
 
                     if (!tempUnit.IsAlive())
                     {
-                        if (tempIndex < enemyTeam.units.Count)
+                        if (enemyTeam.units.Count > 1)
                         {
-                            tempIndex++;
+                            enemyTeam.RemoveUnit(enemyTeam.units[0]);
+                            Debug.Log($"{tempUnit.GetName()} умер, осталось противников {enemyTeam.units.Count}");
+                            
+                            tempUnit = enemyTeam.units[0];
+                            eWeapone = tempUnit.GetWeapone();
+                            eArmor = tempUnit.GetArmor();
                         }
                         else
                         {
@@ -38,22 +55,33 @@ namespace Assets.Scripts
                         }
                     }
                 }
-
-                tempIndex = 0;
-                tempUnit = heroTeam.units[tempIndex];
+                
+                tempUnit = heroTeam.units[0];
+                hWeapone = tempUnit.GetWeapone();
+                hArmor = tempUnit.GetArmor();
 
                 foreach (var enemy in enemyTeam.units)
                 {
-                    Weapone w = enemy.GetWeapone();
-                    float damage = CalculateTheDamage.CalculateDamage(enemy.GetWeapone().damage, tempUnit.GetArmor(),
-                        enemy.GetWeapone().element, tempUnit.GetWeapone().element, krit);
+                    eWeapone = enemy.GetWeapone();
+                    float damage = enemy.GetDamage() + CalculateTheDamage.CalculateDamage(eWeapone.damage,
+                        hArmor,
+                        eWeapone.element,
+                        hWeapone.element,
+                        krit,
+                        out debugInfo);
+                    
                     tempUnit.SubtractHp(damage);
                     Debug.Log($"{enemy.GetName()} наносит: {damage} по {tempUnit.GetName()}");
                     if (!tempUnit.IsAlive())
                     {
-                        if (tempIndex < heroTeam.units.Count)
+                        if (heroTeam.units.Count > 1)
                         {
-                            tempIndex++;
+                            heroTeam.RemoveUnit(tempUnit);
+                            Debug.Log($"{tempUnit.GetName()} умер, осталось героев {heroTeam.units.Count}");
+          
+                            tempUnit = heroTeam.units[0];
+                            hWeapone = tempUnit.GetWeapone();
+                            hArmor = tempUnit.GetArmor();
                         }
                         else
                         {

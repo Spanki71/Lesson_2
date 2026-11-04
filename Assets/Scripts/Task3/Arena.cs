@@ -30,15 +30,24 @@ namespace Assets.Scripts
 
             for (int i = 0; i < rounds; i++)
             {
-                m_heroDamage = CalculateTheDamage.CalculateDamage(hero.GetDamage() + hWDamage, eArmor, hElement, eElement,
-                    hero.GetKrit());
+                string debugInfo;
+                m_heroDamage = CalculateTheDamage.CalculateDamage(hero.GetDamage() + hWDamage,
+                    eArmor,
+                    hElement,
+                    eElement,
+                    hero.GetKrit(),
+                    out debugInfo);
                 enemy.SubtractHp(m_heroDamage);
                 m_st = $"Раунд {i}:{hero.GetName()} наносит {m_heroDamage} у противника {enemy.GetHp()};";
 
                 if (enemy.IsAlive())
                 {
-                    m_enemyDamage = CalculateTheDamage.CalculateDamage(enemy.GetDamage() + eWDamage, hArmor, eElement,
-                        hElement, enemy.GetKrit());
+                    m_enemyDamage = CalculateTheDamage.CalculateDamage(enemy.GetDamage() + eWDamage,
+                        hArmor,
+                        eElement,
+                        hElement,
+                        enemy.GetKrit(),
+                        out debugInfo);
                     hero.SubtractHp(m_enemyDamage);
                     m_st += $"{enemy.GetName()} наносит {m_enemyDamage} у героя {hero.GetHp()}";
                     if (!hero.IsAlive())

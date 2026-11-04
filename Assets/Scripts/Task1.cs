@@ -21,7 +21,9 @@ namespace Assets.Scripts
 		{
 			for (int i = 0; i < countAttack; i++)
 			{
-				Debug.Log( i + 1 + " удар: " + CalculateTheDamage.CalculateDamageString(damage, armor, weaponElement, enemyElement, krit));
+				string debugInfo;
+				CalculateTheDamage.CalculateDamage(damage, armor, weaponElement, enemyElement, krit, out debugInfo);
+				Debug.Log( i + 1 + " удар: " + debugInfo);
 			}
 		}
 	}

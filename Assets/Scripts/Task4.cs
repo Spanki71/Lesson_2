@@ -25,7 +25,6 @@ namespace Assets.Scripts
                     temp.AddItem(Armor.CreateRandom());
                     
                     heroTeam.AddUnit(temp);
-                    
                 }
 
                 for (int i = 0; i < countEnemys; i++)
