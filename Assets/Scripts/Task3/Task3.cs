@@ -1,7 +1,4 @@
 using UnityEngine;
-using System;
-using NUnit.Framework.Constraints;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace Assets.Scripts
 {
