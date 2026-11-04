@@ -5,7 +5,7 @@ namespace Assets.Scripts
 	public class CharacterFactory
 	{
 		private Random m_rand = new Random();
-		public IUnit CreateHero(HeroClass heroClass)
+		public BaseCharacter CreateHero(HeroClass heroClass)
 		{
 			switch (heroClass)
 			{
@@ -18,7 +18,7 @@ namespace Assets.Scripts
 			}
 		}
 
-		public IUnit CreateRandomHero()
+		public BaseCharacter CreateRandomHero()
 		{
 			switch (m_rand.Next(0, 2))
 			{
@@ -30,7 +30,7 @@ namespace Assets.Scripts
 			return null;
 		}
 
-		public IUnit CreateEnemy()
+		public BaseCharacter CreateEnemy()
 		{
 			switch (m_rand.Next(0, 3))
 			{

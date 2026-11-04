@@ -6,18 +6,18 @@ namespace Assets.Scripts
 	public class Inventory
 	{
 		public List<Item> items = new List<Item>(10);
-		private int count = 0;
+		private int m_count = 0;
 
 		public void Print()
 		{
 			string st = "Состояние инвентаря: \n";
 			
-			for (int i = 0; i < count; i++)
+			for (int i = 0; i < m_count; i++)
 			{
 				st += $"{items[i].name} x {items[i].count}\n";
 			}
 
-			st += $"Занято {count} из 10";
+			st += $"Занято {m_count} из 10";
 			Debug.Log(st);
 		}
 
@@ -41,11 +41,11 @@ namespace Assets.Scripts
 				}
 			}
 
-			if (count < 10)
+			if (m_count < 10)
 			{
 				items.Add(item);
 				Debug.Log($"Добавлен новый предмет: {name} x {addCount}");
-				count++;
+				m_count++;
 				return;
 			}
 
@@ -54,7 +54,7 @@ namespace Assets.Scripts
 		
 		public void RemoveItem(string item, int countToRemove)
 		{
-			for (int i = 0; i < count; i++)
+			for (int i = 0; i < m_count; i++)
 			{
 				if (items[i].name == item)
 				{
@@ -67,7 +67,7 @@ namespace Assets.Scripts
 					else if (items[i].count == countToRemove)
 					{
 						items.Remove(items[i]);
-						count--;
+						m_count--;
 						Debug.Log($"Полностью удалено: {item} x {countToRemove}");
 						return;
 					}

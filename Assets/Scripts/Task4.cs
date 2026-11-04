@@ -8,17 +8,17 @@ namespace Assets.Scripts
         public Team enemyTeam  = new Team();
         
         [SerializeField]
-        private int countHeros;
+        private int m_countHeros;
         [SerializeField]
-		private int countEnemys;
+		private int m_countEnemys;
         [SerializeField]
-        private int rounds;
+        private int m_rounds;
         
 		private void Awake()
 		{
             CharacterFactory cf = new CharacterFactory();
             
-                for (int i = 0; i < countHeros; i++)
+                for (int i = 0; i < m_countHeros; i++)
                 {
                     var temp = cf.CreateRandomHero();
                     temp.AddItem(Weapone.CreateRandom());
@@ -27,7 +27,7 @@ namespace Assets.Scripts
                     heroTeam.AddUnit(temp);
                 }
 
-                for (int i = 0; i < countEnemys; i++)
+                for (int i = 0; i < m_countEnemys; i++)
                 {
                     var temp = cf.CreateEnemy();
                     temp.AddItem(Weapone.CreateRandom());
@@ -40,7 +40,7 @@ namespace Assets.Scripts
 		void Start()
         {
             TeamArena ta = new TeamArena();
-            ta.Run(heroTeam, enemyTeam, rounds);
+            ta.Run(heroTeam, enemyTeam, m_rounds);
         }
     }
 }

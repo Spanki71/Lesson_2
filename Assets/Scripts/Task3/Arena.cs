@@ -11,7 +11,7 @@ namespace Assets.Scripts
         private float m_heroDamage;
         private float m_enemyDamage;
 
-        public void Run(IUnit hero, IUnit enemy, int rounds)
+        public void Run(BaseCharacter hero, BaseCharacter enemy, int rounds)
         {
             m_heroName = hero.GetName();
             m_enemyName = enemy.GetName();

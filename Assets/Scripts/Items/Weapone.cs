@@ -4,13 +4,14 @@ namespace Assets.Scripts
 {
     public class Weapone : Item
     {
+        private static Random rand = new Random();
+        
         public int damage;
         public Element element;
         private ItemType type =  ItemType.Weapone;
         
         public static Weapone CreateRandom()
         {
-            Random rand = new Random();
             Element e = Element.None;
             switch (rand.Next(0, 5))
             {

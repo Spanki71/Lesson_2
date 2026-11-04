@@ -3,12 +3,12 @@ namespace Assets.Scripts
 {
     public class Team
     {
-        public List<IUnit> units = new  List<IUnit>();
-        public void AddUnit(IUnit unit)
+        public List<BaseCharacter> units = new  List<BaseCharacter>();
+        public void AddUnit(BaseCharacter unit)
         {
             units.Add(unit);
         }
-        public void RemoveUnit(IUnit unit)
+        public void RemoveUnit(BaseCharacter unit)
         {
             units.Remove(unit);
         }

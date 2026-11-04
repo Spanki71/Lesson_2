@@ -4,14 +4,15 @@ namespace Assets.Scripts
 {
     public class Armor : Item
     {
+        private static Random rand = new Random();
         public int hpArmor;
         public Element element;
         private ItemType type = ItemType.Armor;
         
         public static Armor CreateRandom()
         {
-            Random rand = new Random();
             Element e = Element.None;
+            
             switch (rand.Next(0, 5))
             {
                 case 0:

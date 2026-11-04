@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts
 {
-    public class BaseCharacter : IUnit
+    public class BaseCharacter// : IUnit
     {
         private Inventory m_inventory = new Inventory();
         private string m_name = "Hero";

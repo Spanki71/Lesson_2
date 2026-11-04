@@ -18,12 +18,13 @@ namespace Assets.Scripts
 
             for (int i = 0; i < rounds; i++)
             {
-                IUnit tempUnit = enemyTeam.units[0];
+                BaseCharacter tempUnit = enemyTeam.units[0];
                 Weapone hWeapone; 
                 float hArmor; 
                 Weapone eWeapone = tempUnit.GetWeapone(); 
                 float eArmor = tempUnit.GetArmor();
                 Debug.LogWarning($"раунд {i}");
+                
                 foreach (var hero in heroTeam.units)
                 {
                     hWeapone = hero.GetWeapone();
@@ -72,6 +73,7 @@ namespace Assets.Scripts
                     
                     tempUnit.SubtractHp(damage);
                     Debug.Log($"{enemy.GetName()} наносит: {damage} по {tempUnit.GetName()}");
+                    
                     if (!tempUnit.IsAlive())
                     {
                         if (heroTeam.units.Count > 1)
@@ -91,7 +93,6 @@ namespace Assets.Scripts
                     }
                 }
             }
-            
             Debug.Log("Ничья");
         }
     }

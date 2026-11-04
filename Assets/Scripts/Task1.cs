@@ -5,24 +5,24 @@ namespace Assets.Scripts
 	public class Task1 : MonoBehaviour
 	{
 		[SerializeField]
-		private float damage;
+		private float m_damage;
 		[SerializeField]
-		private float armor;
+		private float m_armor;
 		[SerializeField]
-		private Element weaponElement;
+		private Element m_weaponElement;
 		[SerializeField]
-		private Element enemyElement;
+		private Element m_enemyElement;
 		[SerializeField]
-		private float krit;
+		private float m_krit;
 		[SerializeField]
-		private int countAttack;
+		private int m_countAttack;
 
 		void Start()
 		{
-			for (int i = 0; i < countAttack; i++)
+			for (int i = 0; i < m_countAttack; i++)
 			{
 				string debugInfo;
-				CalculateTheDamage.CalculateDamage(damage, armor, weaponElement, enemyElement, krit, out debugInfo);
+				CalculateTheDamage.CalculateDamage(m_damage, m_armor, m_weaponElement, m_enemyElement, m_krit, out debugInfo);
 				Debug.Log( i + 1 + " удар: " + debugInfo);
 			}
 		}

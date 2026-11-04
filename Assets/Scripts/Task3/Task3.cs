@@ -5,16 +5,16 @@ namespace Assets.Scripts
 	public class Task3 : MonoBehaviour
 	{
 		[SerializeField]
-		private HeroClass s_heroClass;
+		private HeroClass m_heroClass;
 		[SerializeField]
-		private int s_rounds;
+		private int m_rounds;
 		
-		private IUnit hero;
-		private IUnit enemy;
+		private BaseCharacter hero;
+		private BaseCharacter enemy;
 		private void Awake()
 		{
 			CharacterFactory cf = new CharacterFactory();
-			hero = cf.CreateHero(s_heroClass);
+			hero = cf.CreateHero(m_heroClass);
 			enemy = cf.CreateEnemy();
 			Weapone hw = new Weapone("Меч",1,10,Element.None);
 			Weapone ew = new Weapone("Вражеский меч",1,10,Element.Ice);
@@ -28,7 +28,7 @@ namespace Assets.Scripts
 		void Start()
 		{
 			Arena arena = new Arena();
-			arena.Run(hero, enemy, s_rounds);
+			arena.Run(hero, enemy, m_rounds);
 		}
 
 	}

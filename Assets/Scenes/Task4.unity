@@ -367,9 +367,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0d1c1d16c0b2b4ba2ac2ceb8a6aa54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Task4
-  countHeros: 2
-  countEnemys: 2
-  rounds: 10
+  m_countHeros: 2
+  m_countEnemys: 2
+  m_rounds: 20
 --- !u!4 &1941704799
 Transform:
   m_ObjectHideFlags: 0
