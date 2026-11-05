@@ -16,7 +16,7 @@ namespace Assets.Scripts
                 return;
             }
 
-            for (int i = 0; i < rounds; i++)
+            for (int i = 1; i < rounds; i++)
             {
                 BaseCharacter tempUnit = enemyTeam.units[0];
                 Weapone hWeapone; 
