@@ -4,45 +4,44 @@ namespace Assets.Scripts
 {
 	public class CharacterFactory
 	{
-		
-		
-		public IUnit CreateHero(HeroClass heroClass)
+		private Random m_rand = new Random();
+		public BaseCharacter CreateHero(HeroClass heroClass)
 		{
 			switch (heroClass)
 			{
 				case HeroClass.Warrior:
-					return new Warrior();;
+					return new BaseCharacter("Warrior" ,100.0f, 10, 16);
 				case HeroClass.Mage:
-					return new Mage();
+					return new BaseCharacter("Mage" ,130.0f, 6, 12);
 				default:
-					return new Warrior();
+					return new BaseCharacter("Warrior" ,100.0f, 10, 16);
 			}
 		}
-		public IUnit CreateRandomHero()
+
+		public BaseCharacter CreateRandomHero()
 		{
-			Random r = new Random();
-			switch (r.Next(0, 2))
+			switch (m_rand.Next(0, 2))
 			{
 				case 0:
-					return new Warrior();
+					return new BaseCharacter("Warrior" ,100.0f, 10, 16);
 				case 1:
-					return new Mage();
+					return new BaseCharacter("Mage" ,130.0f, 6, 12);
 			}
 			return null;
 		}
-		public IUnit CreateEnemy()
+
+		public BaseCharacter CreateEnemy()
 		{
-			Random r = new Random();
-			switch (r.Next(0, 3))
+			switch (m_rand.Next(0, 3))
 			{
 				case 0:
-					return new Goblin();
+					return new BaseCharacter("Goblin" ,50.0f, 4, 8);
 				case 1:
-					return new Ork();
+					return new BaseCharacter("Ork" ,80.0f, 5, 10);
 				case 2:
-					return new Troll();
+					return new BaseCharacter("Troll" ,140.0f, 8, 12);
 				default:
-					return new Goblin();
+					return new BaseCharacter("Goblin" ,50.0f, 4, 8);
 			}
 		}
 	}

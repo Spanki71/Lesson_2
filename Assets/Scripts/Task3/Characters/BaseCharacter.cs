@@ -1,52 +1,60 @@
-﻿namespace Assets.Scripts
+﻿using System;
+
+namespace Assets.Scripts
 {
-    public abstract class BaseCharacter : IUnit
+    public class BaseCharacter// : IUnit
     {
-        public Inventory inventory = new Inventory();
-        public bool isAlive = true;
-        public string name = "Hero";
-        public float hp = 100.0f;
-        public int minDamage = 10;
-        public int maxDamage = 16;
-        public float krit = 0.3f;
+        private Inventory m_inventory = new Inventory();
+        private string m_name = "Hero";
+        private float m_hp = 100.0f;
+        private int m_damage;
+        private float m_krit = 0.3f;
+        private bool m_isAlive = true;
+
+        public BaseCharacter(string name,float hp,int minDamage,int maxDamage)
+        {
+            m_name = name;
+            m_hp = hp;
+            Random r =  new Random();
+            m_damage = r.Next(minDamage, maxDamage);
+        }
 
         public string GetName()
         {
-            return name;
+            return m_name;
         }
 
         public float GetDamage()
         {
-            System.Random r = new System.Random();
-            return r.Next(minDamage, maxDamage);
+            return m_damage;
         }
 
         public float GetHp()
         {
-            return hp;
+            return m_hp;
         }
 
         public void SubtractHp(float countHp)
         {
-            if (countHp >= hp)
+            if (countHp >= m_hp)
             {
-                hp = 0;
-                isAlive = false;
+                m_hp = 0;
+                m_isAlive = false;
             }
             else
             {
-                hp -= countHp;
+                m_hp -= countHp;
             }
         }
 
         public bool IsAlive()
         {
-            return isAlive;
+            return m_isAlive;
         }
 
         public Weapone GetWeapone()
         {
-            foreach (var item in inventory.items)
+            foreach (var item in m_inventory.items)
             {
                 if (item.itemType == ItemType.Weapone)
                 {
@@ -58,7 +66,7 @@
 
         public float GetArmor()
         {
-            foreach (var item in inventory.items)
+            foreach (var item in m_inventory.items)
             {
                 if (item is Armor armor )
                 {
@@ -71,12 +79,12 @@
 
         public float GetKrit()
         {
-            return krit;
+            return m_krit;
         }
 
         public void AddItem(Item item)
         {
-            inventory.AddItem(item);
+            m_inventory.AddItem(item);
         }
     }
 }

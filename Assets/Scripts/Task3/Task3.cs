@@ -1,20 +1,20 @@
 using UnityEngine;
-using System;
-using NUnit.Framework.Constraints;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace Assets.Scripts
 {
 	public class Task3 : MonoBehaviour
 	{
-		private IUnit hero;
-		private IUnit enemy;
-		[SerializeField] private HeroClass s_heroClass;
-		[SerializeField] private int s_rounds;
+		[SerializeField]
+		private HeroClass m_heroClass;
+		[SerializeField]
+		private int m_rounds;
+		
+		private BaseCharacter hero;
+		private BaseCharacter enemy;
 		private void Awake()
 		{
 			CharacterFactory cf = new CharacterFactory();
-			hero = cf.CreateHero(s_heroClass);
+			hero = cf.CreateHero(m_heroClass);
 			enemy = cf.CreateEnemy();
 			Weapone hw = new Weapone("Меч",1,10,Element.None);
 			Weapone ew = new Weapone("Вражеский меч",1,10,Element.Ice);
@@ -28,7 +28,7 @@ namespace Assets.Scripts
 		void Start()
 		{
 			Arena arena = new Arena();
-			arena.Run(hero, enemy, s_rounds);
+			arena.Run(hero, enemy, m_rounds);
 		}
 
 	}

@@ -4,22 +4,15 @@ namespace Assets.Scripts
 {
     public class Armor : Item
     {
-        ItemType type = ItemType.Armor;
+        private static Random rand = new Random();
         public int hpArmor;
         public Element element;
-        public Armor(string name, int count, int hpArmor, Element element) : base(name, count)
-        {
-            name = base.name;
-            count = base.count;
-            this.hpArmor = hpArmor;
-            this.element = element;
-            this.itemType = ItemType.Armor;
-        }
+        private ItemType type = ItemType.Armor;
         
         public static Armor CreateRandom()
         {
-            Random rand = new Random();
             Element e = Element.None;
+            
             switch (rand.Next(0, 5))
             {
                 case 0:
@@ -50,6 +43,15 @@ namespace Assets.Scripts
                 default:
                     return new Armor("Шлем", 1, rand.Next(5, 25), e);
             }
+        }
+        
+        public Armor(string name, int count, int hpArmor, Element element) : base(name, count)
+        {
+            name = base.name;
+            count = base.count;
+            this.hpArmor = hpArmor;
+            this.element = element;
+            this.itemType = ItemType.Armor;
         }
     }
 }

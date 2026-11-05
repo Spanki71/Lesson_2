@@ -4,21 +4,26 @@ namespace Assets.Scripts
 {
 	public class Task1 : MonoBehaviour
 	{
-		[SerializeField] float damage;
-		[SerializeField] float armor;
-		[SerializeField] Element weaponElement;
-		[SerializeField] Element enemyElement;
-		[SerializeField] float krit;
-		[SerializeField] int countAttack;
+		[SerializeField]
+		private float m_damage;
+		[SerializeField]
+		private float m_armor;
+		[SerializeField]
+		private Element m_weaponElement;
+		[SerializeField]
+		private Element m_enemyElement;
+		[SerializeField]
+		private float m_krit;
+		[SerializeField]
+		private int m_countAttack;
 
-		// Start is called once before the first execution of Update after the MonoBehaviour is created
 		void Start()
 		{
-			
-			for (int i = 0; i < countAttack; i++)
+			for (int i = 0; i < m_countAttack; i++)
 			{
-				Debug.Log( i + 1 + " удар: " + CalculateTheDamage.CalculateDamageString(damage, armor, weaponElement, enemyElement, krit));
-
+				string debugInfo;
+				CalculateTheDamage.CalculateDamage(m_damage, m_armor, m_weaponElement, m_enemyElement, m_krit, out debugInfo);
+				Debug.Log( i + 1 + " удар: " + debugInfo);
 			}
 		}
 	}

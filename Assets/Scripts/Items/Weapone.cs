@@ -4,22 +4,14 @@ namespace Assets.Scripts
 {
     public class Weapone : Item
     {
+        private static Random rand = new Random();
+        
         public int damage;
         public Element element;
-        ItemType type =  ItemType.Weapone;
-
-        public Weapone(string name, int count, int damage, Element element) : base(name, count)
-        {
-            name = base.name;
-            count = base.count;
-            this.damage = damage;
-            this.element = element;
-            this.itemType = ItemType.Weapone;
-        }
-
+        private ItemType type =  ItemType.Weapone;
+        
         public static Weapone CreateRandom()
         {
-            Random rand = new Random();
             Element e = Element.None;
             switch (rand.Next(0, 5))
             {
@@ -51,6 +43,15 @@ namespace Assets.Scripts
                 default:
                     return new Weapone("Меч", 1, rand.Next(5, 25), e);
             }
+        }
+        
+        public Weapone(string name, int count, int damage, Element element) : base(name, count)
+        {
+            name = base.name;
+            count = base.count;
+            this.damage = damage;
+            this.element = element;
+            this.itemType = ItemType.Weapone;
         }
     }
 }
